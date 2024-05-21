@@ -1,0 +1,43 @@
+version: '3'
+services:
+  kali:
+    image: kalilinux/kali-rolling
+    container_name: kali2
+    networks:
+      - pentest-lab
+    ports:
+      - "5901:5901" # VNC port for graphical interface
+      - "8080:8080" # Burp Suite or other web service
+      - "8081:8081" # Optional additional port
+    command: tail -f /dev/null # Keeps the container running
+
+  client1:
+    image: mysql
+    container_name: service1
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dvwa
+    networks:
+      - pentest-lab
+    ports:
+      - "3306:3306" # Map container port 3306 to host port 3306
+
+  client2:
+    image: tomcat:8.5
+    container_name: service2
+    networks:
+      - pentest-lab
+    ports:
+      - "8082:8080" # Map container port 8080 to host port 8082
+
+  client3:
+    image: vulnerables/web-dvwa
+    container_name: service3
+    networks:
+      - pentest-lab
+    ports:
+      - "8083:80" # Map container port 80 to host port 8083
+
+networks:
+  pentest-lab:
+    driver: bridge
