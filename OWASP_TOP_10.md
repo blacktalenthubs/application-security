@@ -1,4 +1,3 @@
-Certainly! Including code snippets and examples can help illustrate how these attacks are executed and how they manifest in a web application. Here are detailed descriptions, examples, and code snippets for each of the OWASP Top 10 vulnerabilities.
 
 ### OWASP Top 10 Security Testing for Web Applications
 
