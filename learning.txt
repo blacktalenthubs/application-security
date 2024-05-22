@@ -1,0 +1,196 @@
+### Day 3: Introduction to Common Tools
+
+**Overview:**
+- This session introduces essential tools for penetration testing, focusing on Nmap, Wireshark, and Burp Suite. These tools are fundamental for network scanning, traffic analysis, and web application security testing.
+
+**Why We Need This:**
+- Understanding and utilizing these tools is crucial for identifying vulnerabilities, analyzing network traffic, and assessing web application security. Mastery of these tools enables penetration testers to conduct thorough assessments and develop effective remediation strategies.
+
+**What Is:**
+- **Nmap:** A network scanning tool used for discovering hosts and services on a computer network.
+- **Wireshark:** A network protocol analyzer that captures and displays data packets for analysis.
+- **Burp Suite:** An integrated platform for performing security testing of web applications.
+
+**Sample Real-World Use Cases:**
+- **Nmap:** Identifying open ports and services on a target network to assess potential vulnerabilities.
+- **Wireshark:** Monitoring network traffic to detect anomalies, intrusions, and data exfiltration.
+- **Burp Suite:** Testing web applications for security flaws such as SQL injection, cross-site scripting (XSS), and broken authentication.
+
+**Example Commands with Real Use Cases:**
+
+- **Nmap:**
+  - Basic network scan to discover hosts and services:
+    ```sh
+    nmap -sP 192.168.1.0/24
+    ```
+  - Detailed scan to identify open ports and services:
+    ```sh
+    nmap -sS -sV 192.168.1.1
+    ```
+
+- **Wireshark:**
+  - Capture packets on a specific interface:
+    ```sh
+    tshark -i eth0 -w capture.pcap
+    ```
+  - Filter HTTP traffic for analysis:
+    ```sh
+    tshark -r capture.pcap -Y "http"
+    ```
+
+- **Burp Suite:**
+  - Intercept HTTP requests to analyze and modify them:
+    1. Configure the browser to use Burp Suite as a proxy.
+    2. Use the "Proxy" tab in Burp Suite to intercept and analyze requests.
+
+**Project Details:**
+- **Requirements:**
+  - Docker
+  - Docker Compose
+  - Nmap, Wireshark, Burp Suite installed on Kali Linux
+
+- **Implementation Details:**
+  - **Set Up Docker Containers:**
+    1. Create a Docker network.
+    2. Deploy Kali Linux as the main testing environment.
+    3. Deploy multiple target services (e.g., DVWA, Tomcat, MySQL).
+
+  - **Verify Services:**
+    - Ensure all services are running and accessible.
+    - Log into the Kali Linux container and install necessary tools.
+
+  - **Demonstrate Basic Scan with Nmap:**
+    - Run Nmap commands to scan the target services.
+    - Analyze the scan results and identify open ports and services.
+
+- **Tools Required:**
+  - Docker
+  - Docker Compose
+  - Kali Linux
+  - Nmap, Wireshark, Burp Suite
+
+### Day 4: Passive Reconnaissance
+
+**Overview:**
+- Passive reconnaissance involves gathering information about a target without directly interacting with it. This helps in building a profile of the target and identifying potential vulnerabilities without alerting the target.
+
+**Why We Need This:**
+- Passive reconnaissance is essential for understanding the target's infrastructure, identifying publicly available information, and preparing for active reconnaissance and exploitation phases. It minimizes the risk of detection and provides valuable insights into the target.
+
+**What Is:**
+- **WHOIS:** A protocol used to query databases to obtain information about domain name registrations.
+- **nslookup:** A command-line tool for querying DNS servers to obtain domain name or IP address mapping information.
+- **Shodan:** A search engine for Internet-connected devices, providing information about exposed services and vulnerabilities.
+
+**Sample Real-World Use Cases:**
+- **WHOIS:** Identifying domain registration details, including the registrar, registration dates, and contact information.
+- **nslookup:** Resolving domain names to IP addresses and obtaining DNS records.
+- **Shodan:** Discovering exposed devices and services on the Internet, such as vulnerable web servers, databases, and IoT devices.
+
+**Example Commands with Real Use Cases:**
+
+- **WHOIS:**
+  - Query domain registration information:
+    ```sh
+    whois example.com
+    ```
+
+- **nslookup:**
+  - Resolve a domain name to an IP address:
+    ```sh
+    nslookup example.com
+    ```
+  - Query DNS records for a domain:
+    ```sh
+    nslookup -type=ANY example.com
+    ```
+
+- **Shodan:**
+  - Search for devices with a specific service exposed:
+    ```sh
+    shodan search "port:80"
+    ```
+
+**Project Details:**
+- **Requirements:**
+  - Kali Linux
+  - WHOIS, nslookup, Shodan CLI installed
+
+- **Implementation Details:**
+  - **Set Up Docker Containers:**
+    1. Ensure the Kali Linux container is running.
+    2. Install WHOIS, nslookup, and Shodan CLI on the Kali Linux container.
+
+  - **Perform Passive Reconnaissance:**
+    - Use WHOIS to gather domain registration information.
+    - Use nslookup to resolve domain names and query DNS records.
+    - Use Shodan to discover exposed services and devices.
+
+- **Tools Required:**
+  - Kali Linux
+  - WHOIS
+  - nslookup
+  - Shodan CLI
+
+### Day 5: Active Reconnaissance
+
+**Overview:**
+- Active reconnaissance involves interacting directly with the target to gather information. This phase includes techniques like network scanning, port scanning, and service enumeration to identify potential attack vectors.
+
+**Why We Need This:**
+- Active reconnaissance provides detailed information about the target's infrastructure, including open ports, running services, and potential vulnerabilities. It is a critical step in identifying exploitable weaknesses.
+
+**What Is:**
+- **Nmap:** A network scanning tool used for discovering hosts and services on a computer network.
+- **Wireshark:** A network protocol analyzer that captures and displays data packets for analysis.
+
+**Sample Real-World Use Cases:**
+- **Nmap:** Identifying open ports and services on a target network to assess potential vulnerabilities.
+- **Wireshark:** Monitoring network traffic to detect anomalies, intrusions, and data exfiltration.
+
+**Example Commands with Real Use Cases:**
+
+- **Nmap:**
+  - Basic network scan to discover hosts and services:
+    ```sh
+    nmap -sP 192.168.1.0/24
+    ```
+  - Detailed scan to identify open ports and services:
+    ```sh
+    nmap -sS -sV 192.168.1.1
+    ```
+
+- **Wireshark:**
+  - Capture packets on a specific interface:
+    ```sh
+    tshark -i eth0 -w capture.pcap
+    ```
+  - Filter HTTP traffic for analysis:
+    ```sh
+    tshark -r capture.pcap -Y "http"
+    ```
+
+**Project Details:**
+- **Requirements:**
+  - Kali Linux
+  - Nmap, Wireshark installed
+
+- **Implementation Details:**
+  - **Set Up Docker Containers:**
+    1. Ensure the Kali Linux container is running.
+    2. Install Nmap and Wireshark on the Kali Linux container.
+
+  - **Perform Active Reconnaissance:**
+    - Use Nmap to perform network and port scanning on the target services.
+    - Use Wireshark to capture and analyze network traffic.
+
+  - **Document Findings:**
+    - Record the open ports, services, and potential vulnerabilities identified.
+    - Capture network traffic and analyze it for suspicious activities.
+
+- **Tools Required:**
+  - Kali Linux
+  - Nmap
+  - Wireshark
+
+This detailed approach provides a comprehensive understanding of each tool and technique, ensuring practical application and thorough documentation of the reconnaissance process.
